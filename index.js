@@ -28,9 +28,6 @@ function getRandomInt(max) {
 const app = express();
 
 // Code in this section sets up an express pipeline
-
-// print info about incoming HTTP request 
-// for debugging
 app.use(function(req, res, next) {
   console.log(req.method,req.url);
   next();
@@ -51,16 +48,10 @@ app.use(bodyParser.json());
 app.get("/getWinner", async function(req, res) {
   console.log("getting winner");
   try {
-  // change parameter to "true" to get it to computer real winner based on PrefTable 
-  // with parameter="false", it uses fake preferences data and gets a random result.
-  // winner should contain the rowId of the winning video.
   let winner = await win.computeWinner(8,true);
   console.log(winner);
   let sql = `SELECT * FROM VideoTable WHERE rowIdNum = ${winner}`;
   let cmd = await db.get(sql);
-  // let sql = 'SELECT'+winner+'FROM PrefTable;';  
-  // let cmd = await db.get(sql);
-  // you'll need to send back a more meaningful response here.
     return res.send(JSON.stringify(cmd));
     
   
@@ -113,20 +104,12 @@ let all_videos10 = await db.all(sql);
   
 });
 
-
-
-
-// Page not found
 app.use(function(req, res){
   res.status(404); 
   res.type('txt'); 
   res.send('404 - File '+req.url+' not found'); 
 });
 
-// end of pipeline specification
-
-// Now listen for HTTP requests
-// it's an event listener on the server!
 const listener = app.listen(3000, function () {
   console.log("The static server is listening on port " + listener.address().port);
 });
