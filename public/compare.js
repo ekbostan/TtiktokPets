@@ -26,8 +26,7 @@ for (let i=0; i<2; i++) {
   heart.addEventListener("click",function() {   heartButtons[j].firstElementChild.removeChild(heartButtons[j].firstElementChild.firstElementChild);
   let full_heart = document.createElement("i");
   full_heart.classList.add("fas","fa-heart","loved");
-  heartButtons[j].firstElementChild.appendChild(full_heart);
-    
+  heartButtons[j].firstElementChild.appendChild(full_heart); 
   let better1;
   let worse1;
   if ( j== 1) {
@@ -59,12 +58,10 @@ sendPostRequest("/insertPref", JSON.stringify(vid_data))
         console.log("POST request error",err);
   }) ;
   });
-   
-
-
+  
 }
-});
-                                     
+});  
+
 let nextbtn = document.getElementById("nxtbutton");
   nextbtn.addEventListener("click",function() {
     sendGetRequest("/continue")
@@ -82,8 +79,7 @@ let nextbtn = document.getElementById("nxtbutton");
     
   })
        });
-    
-    
+
 async function sendPostRequest(url,data) {
   let params = {
     method: 'POST', 
@@ -114,5 +110,4 @@ async function sendGetRequest(url) {
     throw Error(response.status);
   }
 }
-// POST Request
 
