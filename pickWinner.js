@@ -48,14 +48,10 @@ let nodes = makeDirectedGraph(prefs,n,keyList);
 let linkProb = 0.85 // high numbers are more stable
 let tolerance = 0.0001 // accuracy of convergence. 
 
-// run pagerank code
 let results = await Pagerank(nodes, linkProb, tolerance);
-// console.log("Pagerank results",results);
-// get index of max element
 let i = results.indexOf(Math.max(...results));
 
 console.log("winner",i,"rowIdNum",keyList[i]);
-// translate result back to rowId numbers
 return keyList[i];
 }
 
@@ -114,16 +110,13 @@ async function makeUpFakePreferences (n,p,keyList) {
         better: a,
         worse: b
       });
-    } //if 
-  } //for
+    } 
+  } 
   return prefs;
 }
 
-// random integer generator
-// returns an integer between zero and max-1
 function getRandomInt(max) {
   let n = Math.floor(Math.random() * max);
-  // console.log(n);
   return n;
 }
 
@@ -163,9 +156,6 @@ async function getAllVideos() {
     console.log("video dump error", err);
   }
 }
-
-
-
 // inserts a preference into the database
 async function insertPreference(i,j) {
 
