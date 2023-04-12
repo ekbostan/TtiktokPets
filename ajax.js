@@ -1,7 +1,4 @@
 
-// send a get request to given URL
-// assumes data is returned as JSON
-// returns an object
 async function sendGetRequest(url) {
   params = {
     method: 'GET', 
@@ -16,8 +13,6 @@ async function sendGetRequest(url) {
   }
 }
 
-// input data should be an object, 
-// which will be sent as JSON
 async function sendPostRequest(url,data) {
   params = {
     method: 'POST', 
@@ -33,4 +28,3 @@ async function sendPostRequest(url,data) {
     throw Error(response.status);
   }
 }
-
