@@ -1,6 +1,3 @@
-/* Wraps sqlite commands get,use, and all, so that they use Promises, and can be used with async-await */
-
-/* Also creates the database; you will need to configure it here */
 
 'use strict'
 
@@ -14,9 +11,6 @@ const db = new sql.Database("videos.db");
 db.run = util.promisify(db.run);
 db.get = util.promisify(db.get);
 db.all = util.promisify(db.all);
-
-
-
 
 // initialize database tables if necessary
 initTables()
@@ -51,7 +45,6 @@ let result = await db.get(cmd,[table]);
 if (result == undefined) { return false;} 
 else { return true; }
 }
-
 
 // called to create table if needed
 async function createVideoTable() {
